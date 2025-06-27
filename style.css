@@ -1,47 +1,145 @@
+@font-face {
+  font-family: 'Palatino';
+  src: url('fonts/Palatino.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Almarai';
+  src: url('fonts/Almarai-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Almarai-Bold';
+  src: url('fonts/Almarai-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   background-color: #fff;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Almarai', sans-serif;
+  margin: 0;
+  color: #000080;
+}
+
+.logo-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;            /* or just enough to cover the logo and nearby area */
+  height: 160px;           /* match logo height + margin */
+  background-color: white;
+  z-index: 999;           /* just below the logo's z-index */
+  pointer-events: none;   /* allow clicks to pass through */
+}
+
+/* === Logo === */
+.logo {
+  font-size: 22px;
+  font-family: "Palatino", serif;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.08rem;
+  color: inherit;
+}
+
+.logo .char,
+.logo .dash {
+  transition: all 0.8s ease;
+}
+
+.dash-left {
+  transform-origin: right;
+}
+
+.dash-right {
+  transform-origin: left;
+}
+
+/* Positioning variants */
+.logo-left {
+  margin-left: 150px;
+  margin-top: 100px;
+}
+
+.logo-centered {
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+}
+
+
+/* Hover animation — centered only */
+.logo-centered:hover .dash {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.logo-centered:hover .p {
+  transform: translateX(1em);
+}
+
+.logo-centered:hover .f {
+  transform: translateX(-1em);
+}
+
+/* === Entries container === */
+.entries-container {
+  max-width: 400px;
+  margin-left: 150px;  /* align with left logo */
+  padding-top: 80px;   /* push down so content starts below logo */
+  padding-bottom: 80px;
+  padding-right: 20px;
+}
+
+/* === Entry === */
+.entry {
+  margin-bottom: 3rem;
+  color: inherit;
+}
+
+.entry-title {
+  font-size: 16px;
+  margin-bottom: 0.3rem;
+  font-family: 'Almarai', serif;
+}
+
+.entry-content {
+  font-size: 12px;
+  line-height: 1.1;
+  font-family: inherit;
+}
+
+/* Remove underline from links inside entries */
+.entry a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Visited links keep same color */
+a:visited {
+  color: inherit;
+}
+
+/* === Code Chunk === */
+.code-chunk {
+  font-size: 11px;
+  font-family: "Courier New", Courier, monospace;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  text-align: left;
+  padding: 0 20px;
+  line-height: 1.3;
+  color: inherit;
 }
 
-.logo-container {
-  cursor: pointer;
-}
-
-.logo {
-  font-size: 2.5rem;
-  letter-spacing: 0.2rem;
-  transition: all 0.3s ease-in-out;
-  position: relative;
-}
-
-.logo:hover {
-  letter-spacing: normal;
-}
-
-.logo:hover::before {
-  content: "pcf";
-  position: absolute;
-  color: #000;
-  left: 0;
-  top: 0;
-  animation: fadeIn 0.2s ease-in forwards;
-}
-
-.logo:hover {
-  color: transparent;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.code-link {
+  text-decoration: none;
 }
